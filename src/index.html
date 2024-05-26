@@ -10,8 +10,38 @@
     <div class="nav-cont-container">
         <nav class="sidebar">
             <h2>Projects</h2>
+            <button class="create-project">Create Project</button>
+            <ul class="projects">
+            </ul>
         </nav>
-        <div class="content"></div>
+        <div class="todo-section">
+            <h2>ToDo's</h2>
+            <button class="new-todo">New Todo</button>
+            <div class="todo-container"></div>
+        </div>
     </div>
+    <form action="" method="get" hidden>
+        <div class="title-input">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="title" required>
+        </div>
+        <div class="desc-input">
+            <label for="desc">Description</label>
+            <input type="text" id="desc" class="desc">
+        </div>
+        <div class="date-input">
+            <label for="date">Due Date</label>
+            <input type="date" id="date" class="date">
+        </div>
+        <div class="priority-input">
+            <label for="priority">Priority</label>
+            <input type="number" id="priority" class="priority" min="1" max="5">
+        </div>
+        <div class="notes-input">
+            <label for="notes">Notes</label>
+            <textarea name="notes" id="notes" class="notes"></textarea>
+        </div>
+        <button type="button" class="add-todo-btn">Add Todo</button>
+    </form>
 </body>
 </html>

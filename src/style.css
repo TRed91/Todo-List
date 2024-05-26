@@ -17,7 +17,7 @@ h2 {
     text-align: center;
 }
 
-.sidebar, .content {
+.sidebar, .todo-section {
     border: black solid 1px;
     border-radius: 5px;
 }
