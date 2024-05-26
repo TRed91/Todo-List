@@ -1,0 +1,23 @@
+body {
+    height: 90vh;
+}
+
+h1 {
+    text-align: center;
+}
+
+.nav-cont-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.sidebar, .content {
+    border: black solid 1px;
+    border-radius: 5px;
+}
