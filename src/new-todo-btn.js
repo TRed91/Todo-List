@@ -11,32 +11,36 @@ export default function newTodoBtn(projects){
         }else {
             form.hidden = true;
         }
+    });
 
-        const addTodoBtn = document.querySelector('.add-todo-btn');
-        const titleInput = document.querySelector('.title');
-        const descriptionInput = document.querySelector('.desc');
-        const dateInput = document.querySelector('.date');
-        const priorityInput = document.querySelector('.priority');
-        const notesInput = document.querySelector('.notes');
-        const projectsDOM = document.querySelectorAll('.project');
+    const addTodoBtn = document.querySelector('.add-todo-btn');
+    const titleInput = document.querySelector('.title');
+    const descriptionInput = document.querySelector('.desc');
+    const dateInput = document.querySelector('.date');
+    const priorityInput = document.querySelector('.priority');
+    const notesInput = document.querySelector('.notes');
+    const projectsDOM = document.querySelectorAll('.project');
 
-        addTodoBtn.addEventListener('click', () => {
-            for (let item of projectsDOM){
-                if (item.checked) {
-                    let i = item.getAttribute("index");
-                    projects[i].todo.push(new GenerateToDo(
-                        titleInput.value, 
-                        descriptionInput.value, 
-                        dateInput.value, 
-                        priorityInput.value, 
-                        notesInput.value
-                    ));
-                    createTodoDom(projects[i].todo);
-                }
+    addTodoBtn.addEventListener('click', () => {
+        for (let item of projectsDOM){
+            if (item.checked) {
+                let i = item.getAttribute("index");
+                projects[i].todo.push(new GenerateToDo(
+                    titleInput.value, 
+                    descriptionInput.value, 
+                    dateInput.value, 
+                    priorityInput.value, 
+                    notesInput.value
+                ));
+                createTodoDom(projects[i].todo);
             }
-            
+        }        
+    });
 
-            
-        });
-    })
+    projectsDOM.forEach(e => {
+        let i = e.getAttribute("index");
+        e.addEventListener('click', () => {
+            createTodoDom(projects[i].todo);
+        })
+    });
 };

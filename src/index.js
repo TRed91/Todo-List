@@ -18,7 +18,6 @@ const createProject = (function(){
         projectsList.push(projectName);
         DOMProjects(projectsList);
         newTodoBtn(projectsList);
-        console.log(projectsList);
     })
     return {projectsList};
 })();
