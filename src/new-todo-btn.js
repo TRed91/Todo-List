@@ -1,8 +1,8 @@
 import GenerateToDo from "./generateToDo";
 import createTodoDom from "./createDOMtodo";
 
-export default (function(){
-    let todos = []
+export default function newTodoBtn(projects){
+    
     const newTodoBtn = document.querySelector('.new-todo');
     newTodoBtn.addEventListener('click', () => {
         const form = document.querySelector('form');
@@ -18,16 +18,25 @@ export default (function(){
         const dateInput = document.querySelector('.date');
         const priorityInput = document.querySelector('.priority');
         const notesInput = document.querySelector('.notes');
+        const projectsDOM = document.querySelectorAll('.project');
 
         addTodoBtn.addEventListener('click', () => {
-            todos.push(new GenerateToDo(
-                titleInput.value, 
-                descriptionInput.value, 
-                dateInput.value, 
-                priorityInput.value, 
-                notesInput.value));
+            for (let item of projectsDOM){
+                if (item.checked) {
+                    let i = item.getAttribute("index");
+                    projects[i].todo.push(new GenerateToDo(
+                        titleInput.value, 
+                        descriptionInput.value, 
+                        dateInput.value, 
+                        priorityInput.value, 
+                        notesInput.value
+                    ));
+                    createTodoDom(projects[i].todo);
+                }
+            }
+            
 
-            createTodoDom(todos);
+            
         });
     })
-})();
+};

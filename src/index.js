@@ -1,7 +1,7 @@
 import './style.css';
 import DOMProjects from './createDOMprojects';
 import GenerateToDo from './generateToDo';
-import './new-todo-btn';
+import newTodoBtn from './new-todo-btn';
 
 const createProject = (function(){
     const projectsList = [{
@@ -11,14 +11,16 @@ const createProject = (function(){
     console.log(projectsList);
     const createProjectBtn = document.querySelector('.create-project');
     createProjectBtn.addEventListener('click', () => {
-    const projectName = {
-        name: prompt('Enter project name: '),
-        todo: []
-    }
-    projectsList.push(projectName);
-    DOMProjects(projectsList);
-    console.log(projectsList);
+        const projectName = {
+            name: prompt('Enter project name: '),
+            todo: []
+        }
+        projectsList.push(projectName);
+        DOMProjects(projectsList);
+        newTodoBtn(projectsList);
+        console.log(projectsList);
     })
     return {projectsList};
 })();
+
 

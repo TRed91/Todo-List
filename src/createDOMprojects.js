@@ -16,6 +16,7 @@ export default function DOMProjects(projectsList){
         projectInput.setAttribute('name', 'project');
         projectInput.setAttribute('class', 'project');
         projectInput.setAttribute('id', `${e.name}`);
+        projectInput.setAttribute('index', `${projectsList.indexOf(e)}`)
 
         projectLabel.innerHTML = e.name;
         projectDiv.appendChild(projectInput);
