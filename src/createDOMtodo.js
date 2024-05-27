@@ -22,18 +22,21 @@ export default function createTodoDom(todos){
         todoDiv.appendChild(todoNotes);
         todoDiv.appendChild(deleteToDo);
 
-        todoDiv.setAttribute('class', 'todo-element')
+        todoDiv.setAttribute('class', 'todo-element');
+        deleteToDo.setAttribute('class', 'delete-todo');
 
         todoTitle.innerHTML = element.title;
         todoDescription.innerHTML = element.description;
         todoDate.textContent = element.dueDate;
         todoPriority.innerHTML = element.priority;
         todoNotes.innerHTML = element.notes;
-        deleteToDo.innerHTML = 'Delete'
+        deleteToDo.innerHTML = 'Delete';
+
+        deleteToDo.addEventListener('click', () => {
+            todos.splice(todos.indexOf(element), 1);
+            createTodoDom(todos);
+        })
 
         todoContainer.appendChild(todoDiv);
     });
 }
-
-
-

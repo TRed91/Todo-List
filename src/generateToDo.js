@@ -10,4 +10,8 @@ export default class GenerateToDo{
 
     getChecked(){checked};
     setChecked(bool){checked = bool};
+
+    assignToProject(project){
+        project.push(this);
+    }
 }

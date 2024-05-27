@@ -7,7 +7,7 @@ export default function DOMProjects(projectsList){
 
     projectsList.forEach(e => {
         const project = document.createElement('li');
-        project.innerHTML = e;
+        project.innerHTML = e.name;
         projects.appendChild(project);
     });  
 };

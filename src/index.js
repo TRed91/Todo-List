@@ -7,9 +7,13 @@ const createProject = (function(){
     const projectsList = [];
     const createProjectBtn = document.querySelector('.create-project');
     createProjectBtn.addEventListener('click', () => {
-    const projectName = prompt('Enter project name: ');
+    const projectName = {
+        name: prompt('Enter project name: '),
+        todo: []
+    }
     projectsList.push(projectName);
     DOMProjects(projectsList);
+    console.log(projectsList);
     })
     return {projectsList};
 })();
