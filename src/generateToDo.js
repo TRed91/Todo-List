@@ -1,4 +1,4 @@
-export default class GenerateToDo{
+class GenerateToDo{
     constructor (title, description, dueDate, priority, notes) {
         this.title = title;
         this.description = description;
@@ -6,12 +6,19 @@ export default class GenerateToDo{
         this.priority = priority;
         this.notes = notes;
     }
+}
+
+class GenerateProject{
+    constructor(name){
+        this.name = name
+    }
+
+    todo = [];
     checked = false;
 
-    getChecked(){checked};
-    setChecked(bool){checked = bool};
+    getChecked(){return this.checked}
 
-    assignToProject(project){
-        project.push(this);
-    }
+    setChecked(bool){return this.checked = bool}
 }
+
+export {GenerateToDo, GenerateProject}

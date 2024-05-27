@@ -1,9 +1,21 @@
 body {
     height: 90vh;
+    position: relative;
 }
 
 h1 {
     text-align: center;
+}
+
+form {
+    position: absolute;
+    border: 1px solid black;
+    top: 30vh;
+    left: 30vw;
+    background-color: beige;
+    z-index: 10;
+    box-shadow: 3px 3px 3px #00000046;
+    padding: 20px;
 }
 
 .nav-cont-container {
