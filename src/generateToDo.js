@@ -7,4 +7,7 @@ export default class GenerateToDo{
         this.notes = notes;
     }
     checked = false;
+
+    getChecked(){checked};
+    setChecked(bool){checked = bool};
 }

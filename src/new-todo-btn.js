@@ -1,8 +1,10 @@
 import GenerateToDo from "./generateToDo";
+import createTodoDom from "./createDOMtodo";
 
 export default (function(){
     let todos = []
     const newTodoBtn = document.querySelector('.new-todo');
+    const todoContainer = document.querySelector('.todoContainer');
     newTodoBtn.addEventListener('click', () => {
         const form = document.querySelector('form');
         if (form.hidden === true){
@@ -24,9 +26,9 @@ export default (function(){
                 descriptionInput.value, 
                 dateInput.value, 
                 priorityInput.value, 
-                notesInput.value)
-            );
-            console.log(todos);
+                notesInput.value));
+
+            createTodoDom(todos);
         });
     })
 })();
