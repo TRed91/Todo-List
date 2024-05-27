@@ -52,6 +52,11 @@ const newTodoBtnFunc = (function (projects){
                 drawTodoDom(item.todo);  
             }
         }
+        titleInput.value = '';
+        descriptionInput.value = '';
+        dateInput.value = '';
+        priorityInput.value = '';
+        notesInput.value = '';
     });
 
 })();
@@ -60,9 +65,10 @@ function newProjectBtnFunc(){
     createProjectBtn.addEventListener('click', () => {
         
         let projectName;
-        if (projectNameInput.value !== '' || projectNameInput.value !== undefined){
+
+        if (projectNameInput.value !== '' && projectNameInput.value !== undefined){
             projectName = new GenerateProject(projectNameInput.value);
-            }
+        
             projectsList.push(projectName);
             drawProjectsDom(projectsList);
             projectNameInput.value = '';
@@ -84,6 +90,7 @@ function newProjectBtnFunc(){
                     drawTodoDom(projectsList[i].todo);
                 })
             });
+        }
     })
 }
    
