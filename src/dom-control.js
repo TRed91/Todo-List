@@ -1,5 +1,3 @@
-import { titleInput, descriptionInput, dateInput, priorityInput, notesInput, form, confirmTodoBtn, addTodoBtn} from "./logics";
-
 function drawProjectsDom(projectsList){
     
     const projects = document.querySelector('.projects');
@@ -46,34 +44,17 @@ function drawTodoDom(todos){
         const todoDate = document.createElement('div');
         const todoPriority = document.createElement('div');
         const todoNotes = document.createElement('p');
-        const buttonDiv = document.createElement('div')
         const deleteToDo = document.createElement('button');
-        const editToDo = document.createElement('button')
     
         todoDiv.appendChild(todoTitle);
         todoDiv.appendChild(todoDescription);
         todoDiv.appendChild(todoDate);
         todoDiv.appendChild(todoPriority);
         todoDiv.appendChild(todoNotes);
-        todoDiv.appendChild(buttonDiv);
-        buttonDiv.appendChild(editToDo);
-        buttonDiv.appendChild(deleteToDo);
+        todoDiv.appendChild(deleteToDo);
 
         todoDiv.setAttribute('class', 'todo-element');
-        buttonDiv.setAttribute('class', 'todo-button-container')
         deleteToDo.setAttribute('class', 'delete-todo');
-        editToDo.setAttribute('class', 'edit-todo');
-
-        switch (element.getPriority()){
-            case 'High Priority':
-                todoPriority.setAttribute('class', 'high');
-                break;
-            case 'Medium Priority':
-                todoPriority.setAttribute('class', 'medium');
-                break;
-            case 'Low Priority':
-                todoPriority.setAttribute('class', 'low');
-        }
 
         todoTitle.innerHTML = element.title;
         todoDescription.innerHTML = element.description;
@@ -81,17 +62,10 @@ function drawTodoDom(todos){
         todoPriority.innerHTML = element.priority;
         todoNotes.innerHTML = element.notes;
         deleteToDo.innerHTML = 'Delete';
-        editToDo.innerHTML = 'Edit';
 
         deleteToDo.addEventListener('click', () => {
             todos.splice(todos.indexOf(element), 1);
             drawTodoDom(todos);
-        })
-
-        editToDo.addEventListener('click', () => {
-            form.hidden = false;
-            confirmTodoBtn.disabled = false;
-            addTodoBtn.disabled = true;
         })
 
         todoContainer.appendChild(todoDiv);

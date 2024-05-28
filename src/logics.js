@@ -6,8 +6,6 @@ const projectNameInput = document.querySelector('.project-name-input');
 const deleteProject = document.querySelector('.project-delete')
 
 const addTodoBtn = document.querySelector('.add-todo-btn');
-const confirmTodoBtn = document.querySelector('.confirm-todo-btn');
-const cancelBtn = document.querySelector('.cancel-btn');
 const titleInput = document.querySelector('.title');
 const descriptionInput = document.querySelector('.desc');
 const dateInput = document.querySelector('.date');
@@ -32,9 +30,6 @@ function showDefault(){
 const newTodoBtnFunc = (function (projects){
     
     newTodoBtn.addEventListener('click', () => { 
-        confirmTodoBtn.disabled = true;
-        addTodoBtn.disabled = false;
-
         if (form.hidden === true){
             form.hidden = false;
         }else {
@@ -63,10 +58,6 @@ const newTodoBtnFunc = (function (projects){
         dateInput.value = '';
         priorityInput.value = '';
         notesInput.value = '';
-    });
-
-    cancelBtn.addEventListener('click', () => {
-        form.hidden = true;
     });
 
 })();
@@ -103,13 +94,5 @@ function newProjectBtnFunc(){
         }
     })
 }
-
-function getActiveProject(){
-    for (let item of projectsList){
-        if (item.getChecked() === true) {
-            return item
-        }
-    }
-}
-
-export {showDefault, titleInput, descriptionInput, dateInput, priorityInput, notesInput, form, confirmTodoBtn, addTodoBtn}
+   
+export {showDefault}
