@@ -3,6 +3,7 @@ import {drawProjectsDom, drawTodoDom} from './dom-control';
 
 const createProjectBtn = document.querySelector('.create-project');
 const projectNameInput = document.querySelector('.project-name-input');
+const deleteProject = document.querySelector('.project-delete')
 
 const addTodoBtn = document.querySelector('.add-todo-btn');
 const confirmTodoBtn = document.querySelector('.confirm-todo-btn');
@@ -66,7 +67,7 @@ const newTodoBtnFunc = (function (projects){
 
     cancelBtn.addEventListener('click', () => {
         form.hidden = true;
-    })
+    });
 
 })();
 
@@ -103,42 +104,12 @@ function newProjectBtnFunc(){
     })
 }
 
-function editTodoPressed(element){
-    
-    confirmTodoBtn.disabled = false;
-    addTodoBtn.disabled = true;
-
-    if (form.hidden === true){
-        form.hidden = false;
-    }else {
-        form.hidden = true;
+function getActiveProject(){
+    for (let item of projectsList){
+        if (item.getChecked() === true) {
+            return item
+        }
     }
-
-    confirmTodoBtn.addEventListener('click', () => {
-        element.title = titleInput.value;
-        element.description = descriptionInput.value;
-        element.dueDate = dateInput.value;
-        element.priority = priorityInput.value;
-        element.notes = notesInput.value;
-
-        let getActiveProject = () => {
-            for (let item of projectsList){
-                if (item.getChecked() === true) {
-                    return item
-                }
-            }
-        };
-
-        drawTodoDom(getActiveProject().todo);
-
-        titleInput.value = '';
-        descriptionInput.value = '';
-        dateInput.value = '';
-        priorityInput.value = '';
-        notesInput.value = '';
-
-        form.hidden = true;
-    })
 }
 
-export {showDefault, editTodoPressed}
+export {showDefault, titleInput, descriptionInput, dateInput, priorityInput, notesInput, form, confirmTodoBtn, addTodoBtn}

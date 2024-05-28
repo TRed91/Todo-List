@@ -1,4 +1,4 @@
-import { editTodoPressed } from "./logics";
+import { titleInput, descriptionInput, dateInput, priorityInput, notesInput, form, confirmTodoBtn, addTodoBtn} from "./logics";
 
 function drawProjectsDom(projectsList){
     
@@ -18,13 +18,16 @@ function drawProjectsDom(projectsList){
         projectInput.setAttribute('name', 'project');
         projectInput.setAttribute('class', 'project');
         projectInput.setAttribute('id', `${e.name}`);
-        projectInput.setAttribute('index', `${projectsList.indexOf(e)}`)
+        projectInput.setAttribute('index', `${projectsList.indexOf(e)}`);
 
         projectLabel.innerHTML = e.name;
+
         projectDiv.appendChild(projectInput);
         projectDiv.appendChild(projectLabel);
+
         projects.appendChild(projectDiv);
         projectInput.checked = true;
+
     });  
 };
 
@@ -86,7 +89,9 @@ function drawTodoDom(todos){
         })
 
         editToDo.addEventListener('click', () => {
-            return editTodoPressed(element)
+            form.hidden = false;
+            confirmTodoBtn.disabled = false;
+            addTodoBtn.disabled = true;
         })
 
         todoContainer.appendChild(todoDiv);
