@@ -3,7 +3,6 @@ import {drawProjectsDom, drawTodoDom} from './dom-control';
 
 const createProjectBtn = document.querySelector('.create-project');
 const projectNameInput = document.querySelector('.project-name-input');
-const deleteProject = document.querySelector('.project-delete')
 
 const addTodoBtn = document.querySelector('.add-todo-btn');
 const titleInput = document.querySelector('.title');
