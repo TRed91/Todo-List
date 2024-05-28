@@ -1,3 +1,5 @@
+import { editTodoPressed } from "./logics";
+
 function drawProjectsDom(projectsList){
     
     const projects = document.querySelector('.projects');
@@ -16,16 +18,13 @@ function drawProjectsDom(projectsList){
         projectInput.setAttribute('name', 'project');
         projectInput.setAttribute('class', 'project');
         projectInput.setAttribute('id', `${e.name}`);
-        projectInput.setAttribute('index', `${projectsList.indexOf(e)}`);
+        projectInput.setAttribute('index', `${projectsList.indexOf(e)}`)
 
         projectLabel.innerHTML = e.name;
-
         projectDiv.appendChild(projectInput);
         projectDiv.appendChild(projectLabel);
-
         projects.appendChild(projectDiv);
         projectInput.checked = true;
-
     });  
 };
 
@@ -66,6 +65,10 @@ function drawTodoDom(todos){
         deleteToDo.addEventListener('click', () => {
             todos.splice(todos.indexOf(element), 1);
             drawTodoDom(todos);
+        })
+
+        editToDo.addEventListener('click', () => {
+            return editTodoPressed(element)
         })
 
         todoContainer.appendChild(todoDiv);

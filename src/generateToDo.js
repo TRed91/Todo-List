@@ -8,8 +8,6 @@ class GenerateToDo{
     }
 
     getPriority(){return this.priority}
-
-    deleteTodo(){delete this}
 }
 
 class GenerateProject{
@@ -23,7 +21,6 @@ class GenerateProject{
     getChecked(){return this.checked}
 
     setChecked(bool){return this.checked = bool}
-
 }
 
 export {GenerateToDo, GenerateProject}
