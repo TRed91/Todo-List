@@ -5,6 +5,8 @@ const createProjectBtn = document.querySelector('.create-project');
 const projectNameInput = document.querySelector('.project-name-input');
 
 const addTodoBtn = document.querySelector('.add-todo-btn');
+const confirmTodoBtn = document.querySelector('.confirm-todo-btn');
+const cancelBtn = document.querySelector('.cancel-btn');
 const titleInput = document.querySelector('.title');
 const descriptionInput = document.querySelector('.desc');
 const dateInput = document.querySelector('.date');
@@ -29,6 +31,9 @@ function showDefault(){
 const newTodoBtnFunc = (function (projects){
     
     newTodoBtn.addEventListener('click', () => { 
+        confirmTodoBtn.disabled = true;
+        addTodoBtn.disabled = false;
+
         if (form.hidden === true){
             form.hidden = false;
         }else {
@@ -58,6 +63,10 @@ const newTodoBtnFunc = (function (projects){
         priorityInput.value = '';
         notesInput.value = '';
     });
+
+    cancelBtn.addEventListener('click', () => {
+        form.hidden = true;
+    })
 
 })();
 
@@ -93,5 +102,43 @@ function newProjectBtnFunc(){
         }
     })
 }
-   
-export {showDefault}
+
+function editTodoPressed(element){
+    
+    confirmTodoBtn.disabled = false;
+    addTodoBtn.disabled = true;
+
+    if (form.hidden === true){
+        form.hidden = false;
+    }else {
+        form.hidden = true;
+    }
+
+    confirmTodoBtn.addEventListener('click', () => {
+        element.title = titleInput.value;
+        element.description = descriptionInput.value;
+        element.dueDate = dateInput.value;
+        element.priority = priorityInput.value;
+        element.notes = notesInput.value;
+
+        let getActiveProject = () => {
+            for (let item of projectsList){
+                if (item.getChecked() === true) {
+                    return item
+                }
+            }
+        };
+
+        drawTodoDom(getActiveProject().todo);
+
+        titleInput.value = '';
+        descriptionInput.value = '';
+        dateInput.value = '';
+        priorityInput.value = '';
+        notesInput.value = '';
+
+        form.hidden = true;
+    })
+}
+
+export {showDefault, editTodoPressed}

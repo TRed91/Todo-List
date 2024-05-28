@@ -6,6 +6,8 @@ class GenerateToDo{
         this.priority = priority;
         this.notes = notes;
     }
+
+    getPriority(){return this.priority}
 }
 
 class GenerateProject{
