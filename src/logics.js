@@ -3,8 +3,11 @@ import {drawProjectsDom, drawTodoDom} from './dom-control';
 
 const createProjectBtn = document.querySelector('.create-project');
 const projectNameInput = document.querySelector('.project-name-input');
+const deleteProject = document.querySelector('.project-delete')
 
 const addTodoBtn = document.querySelector('.add-todo-btn');
+const confirmTodoBtn = document.querySelector('.confirm-todo-btn');
+const cancelBtn = document.querySelector('.cancel-btn');
 const titleInput = document.querySelector('.title');
 const descriptionInput = document.querySelector('.desc');
 const dateInput = document.querySelector('.date');
@@ -18,13 +21,28 @@ let projectsList = [];
 let indexRef;
 
 function showDefault(){
-    const defaultProject = new GenerateProject('default');
-    defaultProject.todo.push(new GenerateToDo('Title', 'Description', `${new Date()}`, 'Priority', 'Notes'));
-    projectsList.push(defaultProject);
-    defaultProject.setChecked(true);
-    drawProjectsDom(projectsList);
-    drawTodoDom(projectsList[0].todo);
-    newProjectBtnFunc();
+    if (localStorage.length > 0){
+        projectsList = JSON.parse(localStorage.getItem('ProjectList'));
+        projectsList.forEach(e => {
+            Object.setPrototypeOf(e, GenerateProject.prototype);
+            e.todo.forEach(i => {
+                Object.setPrototypeOf(i, GenerateToDo.prototype);
+            })
+        })
+        console.log(projectsList);
+        drawProjectsDom(projectsList);
+        drawTodoDom(projectsList[projectsList.indexOf(getActiveProject())].todo);
+        newProjectBtnFunc();
+        updateSidebarListeners();
+    } else {
+        const defaultProject = new GenerateProject('default');
+        defaultProject.todo.push(new GenerateToDo('Title', 'Description', `${new Date()}`, 'Priority', 'Notes'));
+        projectsList.push(defaultProject);
+        defaultProject.setChecked(true);
+        drawProjectsDom(projectsList);
+        drawTodoDom(projectsList[0].todo);
+        newProjectBtnFunc();
+    }
 };
 
 const newTodoBtnFunc = (function (){
@@ -60,7 +78,8 @@ const newTodoBtnFunc = (function (){
                     priorityInput.value, 
                     notesInput.value
                 ));
-                drawTodoDom(item.todo);  
+                drawTodoDom(item.todo); 
+                store();
             }
         }
         
@@ -93,6 +112,7 @@ const newTodoBtnFunc = (function (){
             drawTodoDom(projectsList[projectsList.length -1].todo);
 
             updateSidebarListeners();
+            store();
         }        
     })
 
@@ -116,13 +136,12 @@ function newProjectBtnFunc(){
             drawTodoDom(projectName.todo)
 
             updateSidebarListeners();
+            store();
         }
     })
 }
 
 function editBtnPressed(element, index){
-    console.log(element)
-    console.log(projectsList)
     form.hidden = false;
     confirmTodoBtn.disabled = false;
     addTodoBtn.disabled = true;
@@ -157,6 +176,10 @@ function updateSidebarListeners(){
             drawTodoDom(projectsList[i].todo);
         })
     });
+}
+
+function store(){
+    localStorage.setItem('ProjectList', JSON.stringify(projectsList));
 }
 
 export {showDefault, editBtnPressed}
