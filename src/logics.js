@@ -86,6 +86,19 @@ const newTodoBtnFunc = (function (){
         form.hidden = true;
     });
 
+    deleteProject.addEventListener('click', () => {
+        const active = projectsList.indexOf(getActiveProject());
+        if (active !== 0){
+            projectsList.splice(active, 1);
+            projectsList[projectsList.length - 1].setChecked(true);
+            console.log(projectsList)
+            drawProjectsDom(projectsList);
+            drawTodoDom(projectsList[projectsList.length -1].todo);
+
+            updateSidebarListeners();
+        }        
+    })
+
 })();
 
 function newProjectBtnFunc(){
@@ -105,18 +118,7 @@ function newProjectBtnFunc(){
             projectName.setChecked(true);
             drawTodoDom(projectName.todo)
 
-            const projectsDOM = document.querySelectorAll('.project');
-            projectsDOM.forEach(e => {
-                let i = e.getAttribute("index");
-                e.addEventListener('click', () => {
-                   
-                    for (let project of projectsList){
-                        project.setChecked(false);
-                    }
-                    projectsList[i].setChecked(true);
-                    drawTodoDom(projectsList[i].todo);
-                })
-            });
+            updateSidebarListeners();
         }
     })
 }
@@ -143,6 +145,21 @@ function getActiveProject(){
             return item
         }
     }
+}
+
+function updateSidebarListeners(){
+    const projectsDOM = document.querySelectorAll('.project');
+    projectsDOM.forEach(e => {
+        let i = e.getAttribute("index");
+        e.addEventListener('click', () => {
+                   
+            for (let project of projectsList){
+                project.setChecked(false);
+            }
+            projectsList[i].setChecked(true);
+            drawTodoDom(projectsList[i].todo);
+        })
+    });
 }
 
 export {showDefault, editBtnPressed}

@@ -1,6 +1,6 @@
 import { editBtnPressed } from "./logics";
 
-function drawProjectsDom(projectsList){
+function drawProjectsDom(projectsList, setDefault){
     
     const projects = document.querySelector('.projects');
     while (projects.firstChild){
@@ -24,10 +24,9 @@ function drawProjectsDom(projectsList){
 
         projectDiv.appendChild(projectInput);
         projectDiv.appendChild(projectLabel);
-
         projects.appendChild(projectDiv);
-        projectInput.checked = true;
-        
+
+        projectInput.checked = true;        
     });  
 };
 
