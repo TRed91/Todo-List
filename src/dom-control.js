@@ -1,4 +1,5 @@
 import { editBtnPressed } from "./logics";
+import { format, formatDistance, subDays } from "date-fns";
 
 function drawProjectsDom(projectsList, setDefault){
     
@@ -77,7 +78,7 @@ function drawTodoDom(todos){
 
         todoTitle.innerHTML = element.title;
         todoDescription.innerHTML = element.description;
-        todoDate.textContent = element.dueDate;
+        todoDate.textContent = format(new Date(element.dueDate), 'MMMM dd');
         todoPriority.innerHTML = element.priority;
         todoNotes.innerHTML = element.notes;
         deleteToDo.innerHTML = 'Delete';

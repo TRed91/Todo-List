@@ -22,7 +22,7 @@ let indexRef;
 
 function showDefault(){
     const defaultProject = new GenerateProject('default');
-    defaultProject.todo.push(new GenerateToDo('Title', 'Description', 'Due Date', 'Priority', 'Notes'));
+    defaultProject.todo.push(new GenerateToDo('Title', 'Description', `${new Date()}`, 'Priority', 'Notes'));
     projectsList.push(defaultProject);
     defaultProject.setChecked(true);
     drawProjectsDom(projectsList);
