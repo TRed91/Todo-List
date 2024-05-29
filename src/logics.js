@@ -18,6 +18,7 @@ const newTodoBtn = document.querySelector('.new-todo');
 const form = document.querySelector('form');
 
 let projectsList = [];
+let indexRef;
 
 function showDefault(){
     const defaultProject = new GenerateProject('default');
@@ -29,9 +30,16 @@ function showDefault(){
     newProjectBtnFunc();
 };
 
-const newTodoBtnFunc = (function (projects){
+const newTodoBtnFunc = (function (){
     
     newTodoBtn.addEventListener('click', () => { 
+
+        titleInput.value = '';
+        descriptionInput.value = '';
+        dateInput.value = '';
+        priorityInput.value = '';
+        notesInput.value = ''; 
+
         confirmTodoBtn.disabled = true;
         addTodoBtn.disabled = false;
 
@@ -58,14 +66,23 @@ const newTodoBtnFunc = (function (projects){
                 drawTodoDom(item.todo);  
             }
         }
-        titleInput.value = '';
-        descriptionInput.value = '';
-        dateInput.value = '';
-        priorityInput.value = '';
-        notesInput.value = '';
+        
     });
 
     cancelBtn.addEventListener('click', () => {
+        form.hidden = true;
+    });
+
+    confirmTodoBtn.addEventListener('click', () => {
+        let selectedTodo = getActiveProject().todo[indexRef];
+        selectedTodo.editTodo(
+            titleInput.value, 
+            descriptionInput.value,
+            dateInput.value,
+            priorityInput.value,
+            notesInput.value
+        )
+        drawTodoDom(projectsList[projectsList.indexOf(getActiveProject())].todo);
         form.hidden = true;
     });
 
@@ -104,6 +121,22 @@ function newProjectBtnFunc(){
     })
 }
 
+function editBtnPressed(element, index){
+    console.log(element)
+    console.log(projectsList)
+    form.hidden = false;
+    confirmTodoBtn.disabled = false;
+    addTodoBtn.disabled = true;
+
+    titleInput.value = element.title;
+    descriptionInput.value = element.description;
+    dateInput.value = element.dueDate;
+    priorityInput.value = element.priority;
+    notesInput.value = element.notes;
+    indexRef = index;
+}
+
+
 function getActiveProject(){
     for (let item of projectsList){
         if (item.getChecked() === true) {
@@ -112,4 +145,4 @@ function getActiveProject(){
     }
 }
 
-export {showDefault, titleInput, descriptionInput, dateInput, priorityInput, notesInput, form, confirmTodoBtn, addTodoBtn}
+export {showDefault, editBtnPressed}

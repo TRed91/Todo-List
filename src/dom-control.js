@@ -1,4 +1,4 @@
-import { titleInput, descriptionInput, dateInput, priorityInput, notesInput, form, confirmTodoBtn, addTodoBtn} from "./logics";
+import { editBtnPressed } from "./logics";
 
 function drawProjectsDom(projectsList){
     
@@ -27,7 +27,7 @@ function drawProjectsDom(projectsList){
 
         projects.appendChild(projectDiv);
         projectInput.checked = true;
-
+        
     });  
 };
 
@@ -63,6 +63,7 @@ function drawTodoDom(todos){
         buttonDiv.setAttribute('class', 'todo-button-container')
         deleteToDo.setAttribute('class', 'delete-todo');
         editToDo.setAttribute('class', 'edit-todo');
+        editToDo.setAttribute('index', `${todos.indexOf(element)}`)
 
         switch (element.getPriority()){
             case 'High Priority':
@@ -89,9 +90,8 @@ function drawTodoDom(todos){
         })
 
         editToDo.addEventListener('click', () => {
-            form.hidden = false;
-            confirmTodoBtn.disabled = false;
-            addTodoBtn.disabled = true;
+            let index = editToDo.getAttribute('index');
+            editBtnPressed(element, index);
         })
 
         todoContainer.appendChild(todoDiv);

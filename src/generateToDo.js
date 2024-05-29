@@ -9,7 +9,13 @@ class GenerateToDo{
 
     getPriority(){return this.priority}
 
-    deleteTodo(){delete this}
+    editTodo(title, description, dueDate, priority, notes){
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.notes = notes;
+    }
 }
 
 class GenerateProject{
