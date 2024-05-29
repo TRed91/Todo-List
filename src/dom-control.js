@@ -72,7 +72,11 @@ function drawTodoDom(todos){
 
         todoTitle.innerHTML = element.title;
         todoDescription.innerHTML = element.description;
-        todoDate.textContent = format(new Date(element.dueDate), 'MMMM dd');
+        if (element.dueDate !== undefined && element.dueDate !== false && element.dueDate !== null && element.dueDate !== ''){
+            todoDate.textContent = format(new Date(element.dueDate), 'MMMM dd');
+        } else {
+            todoDate.textContent = ''
+        }
         todoPriority.innerHTML = element.priority;
         todoNotes.innerHTML = element.notes;
         deleteToDo.innerHTML = 'Delete';
