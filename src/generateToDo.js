@@ -29,7 +29,6 @@ class GenerateProject{
     getChecked(){return this.checked}
 
     setChecked(bool){return this.checked = bool}
-
 }
 
 export {GenerateToDo, GenerateProject}

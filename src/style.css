@@ -1,70 +1,21 @@
-h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --color-gradient: linear-gradient(161deg, rgb(41, 14, 59) 0%, rgb(111, 16, 16) 50%, rgb(109, 72, 20) 100%);
-    --color-scheme-one: #fff0b2;
-    --color-scheme-two: #c6e4fa;
-    --shadow-color: #0000006f;
-    box-sizing: border-box;
-}
-
 body {
     height: 90vh;
     position: relative;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background: var(--color-scheme-two) fixed;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
 }
 
 h1 {
     text-align: center;
-    color: var(--color-scheme-one);
-    background-color: #0b1136d7;
-    box-shadow: 0px 0px 5px black;
-    padding: 10px 50px;
-    border-radius: 5px 20px;
-    width: 80vw;
 }
 
 form {
     position: absolute;
-    border: 2px solid black;
+    border: 1px solid black;
     top: 30vh;
     left: 30vw;
-    background-color: var(--color-scheme-one);
+    background-color: beige;
     z-index: 10;
-    box-shadow: 3px 3px 3px var(--shadow-color);
+    box-shadow: 3px 3px 3px #00000046;
     padding: 20px;
-    border-radius: 5px;
-}
-
-form > div {
-    justify-content: center;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 10px;
-    font-size: 20px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-}
-
-form > div > label {
-    text-align: end;
-}
-
-form > div > input, select {
-    font-size: 15px;
-    padding-left: 5px;
-    height: 1.4rem;
-    border: none;
-    border-radius: 5px;
-    box-shadow: inset 2px 2px 3px var(--shadow-color);
 }
 
 .nav-cont-container {
@@ -79,33 +30,8 @@ h2 {
 }
 
 .sidebar, .todo-section {
-    border: black solid 2px;
-    box-shadow: 2px 2px 3px var(--shadow-color);
+    border: black solid 1px;
     border-radius: 5px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-
-.sidebar {
-    min-width: 170px;
-}
-
-.project-name-input {
-    border: none;
-    height: 1.5rem;
-    width: 95%;
-    border-radius: 10px;
-    box-shadow: inset 2px 2px 3px var(--shadow-color);
-    padding-left: 10px;
-    margin-bottom: 5px;
-}
-
-.todo-container {
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .todo-element {
@@ -129,7 +55,6 @@ h2 {
 
 .projects > div {
     display: flex;
-    align-items: center;
     gap: 5px;
     box-shadow: 0px 0px 3px var(--shadow-color);
     padding: 5px;
@@ -153,16 +78,10 @@ button {
     width: 100%;
 }
 
-.delete-todo, .cancel-btn, .project-delete {
+.delete-todo, .cancel-btn {
     font-size: 15px;
     background-color: #8e0000;
     color: white;   
-}
-
-.project-delete {
-    font-size: 1rem;
-    padding: 5px;
-    justify-self: flex-end;
 }
 
 .cancel-btn {
@@ -187,7 +106,7 @@ button:hover {
     background-color: #072940;
 }
 
-.delete-todo:hover, .cancel-btn:hover, .project-delete:hover{
+.delete-todo:hover, .cancel-btn:hover{
     background-color: #ce3333;
 }
 

@@ -19,10 +19,9 @@ function drawProjectsDom(projectsList, setDefault){
         projectInput.setAttribute('name', 'project');
         projectInput.setAttribute('class', 'project');
         projectInput.setAttribute('id', `${e.name}`);
-        projectInput.setAttribute('index', `${projectsList.indexOf(e)}`);
+        projectInput.setAttribute('index', `${projectsList.indexOf(e)}`)
 
         projectLabel.innerHTML = e.name;
-
         projectDiv.appendChild(projectInput);
         projectDiv.appendChild(projectLabel);
         projects.appendChild(projectDiv);
@@ -46,21 +45,16 @@ function drawTodoDom(todos){
         const todoDate = document.createElement('div');
         const todoPriority = document.createElement('div');
         const todoNotes = document.createElement('p');
-        const buttonDiv = document.createElement('div')
         const deleteToDo = document.createElement('button');
-        const editToDo = document.createElement('button')
     
         todoDiv.appendChild(todoTitle);
         todoDiv.appendChild(todoDescription);
         todoDiv.appendChild(todoDate);
         todoDiv.appendChild(todoPriority);
         todoDiv.appendChild(todoNotes);
-        todoDiv.appendChild(buttonDiv);
-        buttonDiv.appendChild(editToDo);
-        buttonDiv.appendChild(deleteToDo);
+        todoDiv.appendChild(deleteToDo);
 
         todoDiv.setAttribute('class', 'todo-element');
-        buttonDiv.setAttribute('class', 'todo-button-container')
         deleteToDo.setAttribute('class', 'delete-todo');
         editToDo.setAttribute('class', 'edit-todo');
         editToDo.setAttribute('index', `${todos.indexOf(element)}`)
@@ -82,7 +76,6 @@ function drawTodoDom(todos){
         todoPriority.innerHTML = element.priority;
         todoNotes.innerHTML = element.notes;
         deleteToDo.innerHTML = 'Delete';
-        editToDo.innerHTML = 'Edit';
 
         deleteToDo.addEventListener('click', () => {
             todos.splice(todos.indexOf(element), 1);
